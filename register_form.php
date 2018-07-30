@@ -1,7 +1,7 @@
 <?php
-//error_reporting(1);//turning off error reporting
+error_reporting(0);//turning off error reporting
 include("connect.php");
-$sql="SELECT patientid FROM patients where patientid LIKE '%PID%'";
+$sql="SELECT studentid FROM students where studentid LIKE '%CCA%'";
 $records=mysqli_query($db,$sql);
 
 
@@ -177,26 +177,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                            <div class="menu">
 									<ul id="menu" >
 										<li><a href="homepage.php"><i class="fa fa-tachometer"></i> <span>Administration</span></a></li>
-										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Patient</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Student</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										   <ul id="menu-academico-sub" >
-										   <li id="menu-academico-avaliacoes" ><a href="students.php">New patient</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewpatientrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="viewpatientsedit1.php">Edit patients</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="csvpatients.php">Import/Export Data</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewpatientrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="billingpatient.php">Billing</a></li>
-											<li id="menu-academico-boletim" ><a href="patientcreditnotes.php">Credit Notes</a></li>
+										   <li id="menu-academico-avaliacoes" ><a href="students.php">New Student</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
+											<li id="menu-academico-boletim" ><a href="viewstudentsedit1.php">Edit Student</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="csvstudents.php">Import/Export Data</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
+											<li id="menu-academico-boletim" ><a href="billingstudent.php">Billing</a></li>
+											<li id="menu-academico-boletim" ><a href="studentcreditnotes.php">Credit Notes</a></li>
 											
 											
 										  </ul>
 										</li>
-										 <li id="menu-academico" ><a href="staff.php"><i class="fa fa-file-text-o"></i> <span>Manage Staff</span></a></li>
-									<li><a href="course.php"><i class="lnr lnr-pencil"></i> <span>Manage Medicine</span></a></li>
-									<li id="menu-academico" ><a href="departments.php"><i class="fa fa-file-text-o"></i> <span>Manage Diseases</span></a></li>
-									<li id="menu-academico" ><a href="markstep1.php"><i class="lnr lnr-book"></i> <span>Pharmacy</span></a></li>
-									 <li><a href="hostel.php"><i class="lnr lnr-envelope"></i> <span>In Patients</span></a></li>
-									<li><a href="sms.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a></li>
-							        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Lab Results</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										 <li id="menu-academico" ><a href="staff.php"><i class="fa fa-file-text-o"></i> <span>Staff Member</span></a></li>
+									<li><a href="course.php"><i class="lnr lnr-pencil"></i> <span>Courses</span></a></li>
+									<li id="menu-academico" ><a href="departments.php"><i class="fa fa-file-text-o"></i> <span>Departments</span></a></li>
+									<li id="menu-academico" ><a href="markstep1.php"><i class="lnr lnr-book"></i> <span>Exams</span></a></li>
+									 <li><a href="hostel.php"><i class="lnr lnr-envelope"></i> <span>Hostel</span></a></li>
+									<li><a href="sms.php"><i class="lnr lnr-chart-bars"></i> <span>SMS</span></a></li>
+							        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Tabs & Calender</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										 <ul id="menu-academico-sub" >
 											<li id="menu-academico-avaliacoes" ><a href="tabs.html">Tabs</a></li>
 											<li id="menu-academico-boletim" ><a href="calender.html">Calender</a></li>
@@ -461,15 +461,122 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <p>
                     <div class="table-responsive"  >
 <!--*************************************************************************************************************************-->
-              
+ <!--*************************************************************************************************************************-->
+<div class="grids">
+					
+					<div class="panel panel-widget forms-panel">
+						<div class="forms">
+							<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
+								<div class="form-title">
+									<h5>Registration Form :</h5>
+
+								</div>
+								<div class="form-body">
                         
-						
-						<img src="images/7.jpg" alt="Jack" style="width:1300px;height:700px;/>
-						
-						
-						
-</div>
-</div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table"> 
+
+                      <!--*************************************************************************************************************************-->
+
+
+
+
+                       
+<div class="row">
+        <div class="col-sm-3">
+        </div>
+<div class="col-sm-6" >
+                                  <form method="POST" action="register_form.php">     
+                                     <div class="form-group">
+									  <label>First Name</label>
+                                            <input type="text" name="fname" id="fname"class="form-control" placeholder="First Name" required autofocus/>
+                                        </div>
+										<div class="form-group">
+										<label>Last Name</label>
+                                            <input type="text" name="lname" id="lname"class="form-control" placeholder="Last Name" required autofocus/>
+                                        </div>
+										<div class="form-group">
+										<label>User Name</label>
+                                            <input type="text" name="username" id="username"class="form-control" placeholder="Desired Username" required autofocus/>
+                                        </div>
+                                        <div class="form-group">
+										<label>Email</label>
+                                            <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" required/>
+                                        </div>
+                                      <div class="form-group">
+									  <label>Password</label>
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required/>
+                                        </div>
+										<br>
+										<div class="row-md-5 col-md-offset-6 column">
+                                     <button type="submit" id="submit" name="register" class="btn btn-primary">Save</button> 
+									 <a href="homepage.php" class="btn btn-primary">Back</a>
+									 </div>
+                                    </form>
+                            </div>
+                           
+                        </div>
+                    </div>
+                
+                
+        </div>
+		<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<div class="row-fluid">
+				<div class="col-md-3 col-md-offset-1">
+												
+				
+				
+				</div></div>
+				
+				
+				
+				<div class="row-fluid">
+				<div class="col-md-5 col-md-offset-2">
+				<h4><span id=tick2>
+				</span>&nbsp;
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+   
+	<?php
+	if (isset($_POST['register'])){
+	
+	$fname=$_POST['fname'];
+	$lname=$_POST['lname'];
+	$username=$_POST['username'];
+    $email=$_POST['email'];
+	$password=$_POST['password'];
+	
+	$query = mysql_query("select * from admin where username = '$username' and password = '$password' and fname = '$fname' and lname = '$lname' and email = '$email' ")or die(mysql_error());
+$count = mysql_num_rows($query);
+
+if ($count > 0){ ?>
+<script>
+alert('Data Already Exist');
+</script>
+<?php
+}else{
+	mysql_query("insert into admin (fname,lname,username,password,email) values('$fname','$lname','$username','$password','$email')")or die(mysql_error());
+	
+	}
+	
+	?>
+	<script>
+alert('Succsessfully Save');
+window.location = "index.php";
+</script>
+<?php
+}?>
+		
+		</div>
                          
     
    

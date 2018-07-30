@@ -77,7 +77,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!--//main-->
 	<!--footer-->
 	<div class="footer">
-		<p>&copy; 2018 Login Form. All rights reserved | Design by
+		<p>&copy; 2018 Login Form.. All rights reserved | Design by
 			<a href="#">Jack Msonkho</a>
 		</p>
 	</div>

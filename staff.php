@@ -1,7 +1,7 @@
 <?php
-//error_reporting(1);//turning off error reporting
+error_reporting(0);//turning off error reporting
 include("connect.php");
-$sql="SELECT patientid FROM patients where patientid LIKE '%PID%'";
+$sql="SELECT patient_id FROM patients_table where patient_id LIKE '%CCA%'";
 $records=mysqli_query($db,$sql);
 
 
@@ -177,26 +177,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                            <div class="menu">
 									<ul id="menu" >
 										<li><a href="homepage.php"><i class="fa fa-tachometer"></i> <span>Administration</span></a></li>
-										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Patient</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Student</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										   <ul id="menu-academico-sub" >
-										   <li id="menu-academico-avaliacoes" ><a href="students.php">New patient</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewpatientrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="viewpatientsedit1.php">Edit patients</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="csvpatients.php">Import/Export Data</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewpatientrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="billingpatient.php">Billing</a></li>
-											<li id="menu-academico-boletim" ><a href="patientcreditnotes.php">Credit Notes</a></li>
+										   <li id="menu-academico-avaliacoes" ><a href="students.php">New Student</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
+											<li id="menu-academico-boletim" ><a href="viewstudentsedit1.php">Edit Student</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="csvstudents.php">Import/Export Data</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
+											<li id="menu-academico-boletim" ><a href="billingstudent.php">Billing</a></li>
+											<li id="menu-academico-boletim" ><a href="studentcreditnotes.php">Credit Notes</a></li>
 											
 											
 										  </ul>
 										</li>
-										 <li id="menu-academico" ><a href="staff.php"><i class="fa fa-file-text-o"></i> <span>Manage Staff</span></a></li>
-									<li><a href="course.php"><i class="lnr lnr-pencil"></i> <span>Manage Medicine</span></a></li>
-									<li id="menu-academico" ><a href="departments.php"><i class="fa fa-file-text-o"></i> <span>Manage Diseases</span></a></li>
-									<li id="menu-academico" ><a href="markstep1.php"><i class="lnr lnr-book"></i> <span>Pharmacy</span></a></li>
-									 <li><a href="hostel.php"><i class="lnr lnr-envelope"></i> <span>In Patients</span></a></li>
-									<li><a href="sms.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a></li>
-							        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Lab Results</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										 <li id="menu-academico" ><a href="staff.php"><i class="fa fa-file-text-o"></i> <span>Staff Member</span></a></li>
+									<li><a href="course.php"><i class="lnr lnr-pencil"></i> <span>Courses</span></a></li>
+									<li id="menu-academico" ><a href="departments.php"><i class="fa fa-file-text-o"></i> <span>Departments</span></a></li>
+									<li id="menu-academico" ><a href="markstep1.php"><i class="lnr lnr-book"></i> <span>Exams</span></a></li>
+									 <li><a href="hostel.php"><i class="lnr lnr-envelope"></i> <span>Hostel</span></a></li>
+									<li><a href="sms.php"><i class="lnr lnr-chart-bars"></i> <span>SMS</span></a></li>
+							        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Tabs & Calender</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										 <ul id="menu-academico-sub" >
 											<li id="menu-academico-avaliacoes" ><a href="tabs.html">Tabs</a></li>
 											<li id="menu-academico-boletim" ><a href="calender.html">Calender</a></li>
@@ -460,17 +460,164 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 
                 <p>
                     <div class="table-responsive"  >
-<!--*************************************************************************************************************************-->
-              
+<!--**************************************************************************************************************************-->
                         
-						
-						<img src="images/7.jpg" alt="Jack" style="width:1300px;height:700px;/>
-						
-						
-						
+<!--**************ths is the success msg on saving the cord-->
+                
+  <!--*************************************************************************************************************************-->
+<div class="grids">
+					
+					<div class="panel panel-widget forms-panel">
+						<div class="forms">
+							<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
+								<div class="form-title">
+									<h5>Basic Form :</h5>
+
+								</div>
+								<!--**************ths is the success msg on saving the cord-->
+                
+  <!--*************************************************************************************************************************-->
+                       
+<div class="container-fluid">
+       <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Add new Staff Member</div>
+                        
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table"> 
+
+                       <form action="staff.php" method="POST" enctype="multipart/form-data">
+                                                  
+                                <div style="float:left;  position:relative">
+                                <h4>Staff Registration Details</h4>
+                                                                               
+                                <label>Firstname</label>
+                                <input type="text" name="firstname" placeholder="e.g Jack" id="sfname" class="form-control" >
+                              
+                                <label>Last Name</label>
+                                <input type="text" name="lastname" placeholder="e.g Msonkho" id="slname" class="form-control">
+                             
+                                <label>National ID/Licence</label>
+                                 <input type="text" name="idno" class="form-control" placeholder="optional">
+                                <label>DOB</label>
+                                <input type="date" name="dateofbirth" required class="form-control" max="2010-12-31">
+                                <label>Gender</label>
+                                <select name="gender" class="form-control" class="form-control"> 
+                                                  <option value="male">Male</option>
+                                                  <option value="female">Female</option>
+                                          </select> 
+
+                                
+                                </div>
+                                <!--section two-->
+                                <div style="float:right; position:relative">
+                                <h4>Contact Details</h4>
+                                                           
+                                <label> Mobile</label>
+                                <input type="number" name="mobile" required class="form-control">
+                                <label> Email</label>
+                                <input type="email" name="email" class="form-control"> 
+                                <label> Position</label>
+                                <select name="position" id="position" onchange="OnSelectionChange(this)" class="form-control" />
+                                                <?php
+                                                $sql30="SELECT position_name FROM position";
+                                                $records41=mysqli_query($db,$sql30);
+                                                   while($users9=mysqli_fetch_array($records41,MYSQLI_ASSOC))
+                                                        {
+                                                            echo "<option>".$users9['position_name']."</option>";
+                                                        $positionname=$users9['position_name'];
+                                                        }
+
+                                                ?></select>
+                                <label> Area</label>
+                                <select name="area" id="area" onchange="OnSelectionChange(this)" class="form-control" />
+                                                <?php
+                                                $sql29="SELECT area_name FROM area";
+                                                $records4=mysqli_query($db,$sql29);
+                                                   while($users9=mysqli_fetch_array($records4,MYSQLI_ASSOC))
+                                                        {
+                                                            echo "<option>".$users9['area_name']."</option>";
+                                                        $countyname=$users9['area_name'];
+                                                        }
+
+                                                ?></select>
+                               <label> Address</label>
+                                <input type="textarea" rows="4" cols="50" name="address" class="form-control">
+
+                                </div>                               
+                                <!--this is section three-->
+                                <div style="float:left;  position:relative; clear:both;"><br>                           
+                                                               
+                               
+                               <input type="submit" name="register" value="Save Record" class="btn btn-success"><br><br>
+                                </div>                               
+                        </form>
 </div>
 </div>
-                         
+</div>
+</div>
+</div>
+
+<!--*************************************PHP CODES TO SAVE THE DATA************************************************-->
+<?php
+   // mysql_select_db('sms2',mysqli_connect('localhost','root',''))or die(mysql_error());
+    if (isset($_POST['register'])){
+
+
+        $xx=$_POST['area'];
+        $sql="SELECT * FROM area WHERE  area_name='$xx'";
+        $user_query=mysqli_query($db,$sql) or die("error getting data");
+        while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+        $area= $row['area_id'];} 
+
+
+    $xx=$_POST['position'];
+        $sql="SELECT * FROM position WHERE  position_name='$xx'";
+        $user_query=mysqli_query($db,$sql) or die("error getting data");
+        while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+        $position= $row['position_id'];}
+
+        $firstname=addslashes($_POST['firstname']);
+        $lastname=addslashes($_POST['lastname']);
+        $idno=addslashes($_POST['idno']);
+        $dateofbirth=addslashes($_POST['dateofbirth']);
+        $gender=addslashes($_POST['gender']);
+        $mobile=addslashes($_POST['mobile']);
+        $email=addslashes($_POST['email']);
+        $address=addslashes($_POST['address']);
+        $monthh = strtotime('date()');
+        $mon = date('Y-m-d',$monthh);
+
+    //<!--**************************************************************>
+                        
+    
+     mysqli_query($db,"INSERT INTO staff(firstname, lastname, idno, dateofbirth, gender, mobile, email, s_address, area, position) VALUES ('$firstname','$lastname','$idno','$dateofbirth','$gender','$mobile','$email','$address','$area','$position')") or die(mysqli_error($db));
+
+?>
+                       
+                        
+                        <script>
+ 
+                        alert('Succsessfully Saved!');
+                      
+                        </script>
+<?php
+ //<!--*******************************try add parent's details******************************************************-->  
+
+}?>
+<!--**********************************************************************************************************************-->
+             
+
+                </div>
+                </p>
+
+
+            </div>
+            
+        </div>
+    </div>
     
    
     <script src="assets/js/jquery.min.js"></script>
