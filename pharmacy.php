@@ -141,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<ul>
 											<li><a href="contact.html">help</a></li>|
 											<li><a href="contact.html">Contact</a></li>|
-											<li><a href="checkout.html">Delivery information</a></li>|
+											<li><a href="session_logout.php">Log out</a></li>|
 											<?php
         //Check to see if the user is logged in.if not redirect user to the loging page.
         
@@ -155,7 +155,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 echo "<script>
                     window.location = 'index.php'
                   </script>";
+		}
+		
+		if($_SESSION['position'] == 3 || $_SESSION['position'] == 5)
+        { 
+        
+        }else{
+          echo "<script type='text/javascript'>
+                    alert( 'You must Log in as a Pharmacist or Admin to view this page');
+                    </script>";
+                echo "<script>
+                    window.location = 'homepage.php'
+                  </script>";
         }
+        
+
         ?>
 											
 										</ul>
@@ -213,11 +227,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li id="menu-academico" ><a href="pharmacy1.php"><i class="fa fa-file-text-o"></i> <span>Pharmacy</span></a></li>
 									<li id="menu-academico" ><a href="billing1.php"><i class="lnr lnr-book"></i> <span>Billing</span></a></li>
 									 
-									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a></li>
+									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a>
+									<ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="reports.php">Visit Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_morbidity.php">Disease Rate Report</a></li>
+											<li id="menu-academico-boletim" ><a href="report_doctors.php">Doctor Patient Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_area.php">Morbidity Per Area</a></li>
+											 </ul>
+										</li>
 									  </ul>
-									 </li>
-									
-								  </ul>
 								</div>
 							  </div>
 							  <div class="clearfix"></div>	
@@ -276,7 +294,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					
 
-								<h1>Patient Vitals</h1>
+								<h1>Pharmacy</h1>
                                 <?php 
                     
 
@@ -291,7 +309,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="form-body">
     <div class="bg-agile">
 	<div style ="height:1000px;"class="book-appointment">
-	<h2>Patient Vitals</h2>
+	<h2>Pharmacy</h2>
     <form action="" method="POST" enctype="multipart/form-data">
 				<div class="left-agileits-w3layouts same">
 					<div class="gaps">
@@ -299,16 +317,61 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" name="fname" id="fname" placeholder="<?php echo $fname ?>" readonly />
 					</div>	
 					<div class="gaps">
-					<label>BP Systolic</label>
-                                <input type="number" name="BPsys" placeholder="" id="BPsys" class="form-control" >
+						<p>Medicine/item</p>	
+							<select class="form-control" name="medicine" id="medicine">
+                            <?php                                                
+                                                $sql3="SELECT item_name FROM item";
+                                                $records3=mysqli_query($db,$sql3);                                              
+
+                                                    while($users3=mysqli_fetch_array($records3,MYSQLI_ASSOC))
+                                                        {
+                                                            echo "<option>".$users3['item_name']."</option>";
+                                                        }
+                                                ?></select>
 					</div>
 					<div class="gaps">
-					<label>BP Diastolic</label>
-                                <input type="number" name="BPdia" placeholder="" id="BPdias" class="form-control">
+						<p>Medicine/item2</p>	
+							<select class="form-control" name="medicine2" id="medicine">
+                            <?php                                                
+                                                $sql3="SELECT item_name FROM item";
+                                                $records3=mysqli_query($db,$sql3);                                              
+
+                                                    while($users3=mysqli_fetch_array($records3,MYSQLI_ASSOC))
+                                                        {
+                                                            echo "<option>".$users3['item_name']."</option>";
+                                                        }
+                                                ?></select>
 					</div>
-					
-						
-					
+					<div class="gaps">
+						<p>Medicine/item3</p>	
+							<select class="form-control" name="medicine3" id="medicine">
+                            <?php                                                
+                                                $sql3="SELECT item_name FROM item";
+                                                $records3=mysqli_query($db,$sql3);                                              
+
+                                                    while($users3=mysqli_fetch_array($records3,MYSQLI_ASSOC))
+                                                        {
+                                                            echo "<option>".$users3['item_name']."</option>";
+                                                        }
+                                                ?></select>
+					</div>
+					<div class="gaps">
+						<p>Medicine/item4</p>	
+							<select class="form-control" name="medicine4" id="medicine">
+                            <?php                                                
+                                                $sql3="SELECT item_name FROM item";
+                                                $records3=mysqli_query($db,$sql3);                                              
+
+                                                    while($users3=mysqli_fetch_array($records3,MYSQLI_ASSOC))
+                                                        {
+                                                            echo "<option>".$users3['item_name']."</option>";
+                                                        }
+                                                ?></select>
+					</div>
+					<div class="gaps">
+						<p>Prescription</p>
+						<textarea id="presc" name="presc" placeholder="" title="Please enter prescription"></textarea>
+						</div>
                       
 					
 				</div>
@@ -318,17 +381,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" name="lName" id="lname" placeholder="<?php echo $lname ?>" readonly />
 					</div>
 					<div class="gaps">
-					<label> Weight (kg)</label>
-                                <input type="number" name="Weight" min="0" value="0" step="any" required class="form-control">
+						<p>Quantity</p>
+						<input type="text" name="quantity" id="quantity" placeholder=""/>
 					</div>
 					<div class="gaps">
-					<label> height (cm)</label>
-                                <input type="number" name="Height" required class="form-control">
+						<p>Quantity2</p>
+						<input type="text" name="quantity2" id="quantity" placeholder=""/>
 					</div>
 					<div class="gaps">
-					<label> Temperature (c)</label>
-                                <input type="number" name="Temp" min="0" value="0" step="any"  required class="form-control">
-					
+						<p>Quantity3</p>
+						<input type="text" name="quantity3" id="quantity" placeholder=""/>
+					</div>
+					<div class="gaps">
+						<p>Quantity4</p>
+						<input type="text" name="quantity4" id="quantity" placeholder=""/>
+					</div>
+					<div class="gaps">
+						<p>Instructions</p>
+						<textarea id="desc" name="desc" placeholder="" title="Please enter prescription"></textarea>
+						</div>
 				</div>
 				
 				<input type="submit" name="register" value="Save Record" class="btn btn-success">
@@ -340,30 +411,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 </div>
 
-  <!--*************************************PHP CODES TO SAVE THE DATA************************************************-->
-<?php
-   // mysql_select_db('Visualisations2',mysqli_connect('localhost','root',''))or die(mysql_error());
+   <?php
+   // mysql_select_db('sms2',mysqli_connect('localhost','root',''))or die(mysql_error());
     if (isset($_POST['register'])){
 
+        $xx=$_POST['medicine'];
+        $sql="SELECT * FROM item WHERE item_name='$xx'";
+        $user_query=mysqli_query($db,$sql) or die("error getting data");
+        while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+        $stock_prescribed = $row['id'];}
+
+		$xx=$_POST['medicine2'];
+        $sql="SELECT * FROM item WHERE item_name='$xx'";
+        $user_query=mysqli_query($db,$sql) or die("error getting data");
+        while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+		$stock_prescribed2 = $row['id'];}
+		
+		$xx=$_POST['medicine3'];
+        $sql="SELECT * FROM item WHERE item_name='$xx'";
+        $user_query=mysqli_query($db,$sql) or die("error getting data");
+        while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+		$stock_prescribed3 = $row['id'];}
+		
+		$xx=$_POST['medicine4'];
+        $sql="SELECT * FROM item WHERE item_name='$xx'";
+        $user_query=mysqli_query($db,$sql) or die("error getting data");
+        while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+        $stock_prescribed4 = $row['id'];}
 
 
-        $BPsys=addslashes($_POST['BPsys']);
-        $BPdia=addslashes($_POST['BPdia']);
-        $Weight=addslashes($_POST['Weight']);
-        $height=addslashes($_POST['Height']);
-		$Temp=addslashes($_POST['Temp']);
-		$tdate=date("Y-m-d"); 
-        $monthh = strtotime('date()');
-		$mon = date('Y-m-d',$monthh);
-		$p_id = isset($_GET['id']) ? $_GET['id'] : '';
-		$staff= $_SESSION['staff_id']; 
+
+        $prescription=addslashes($_POST['presc']);
+		$quantity=addslashes($_POST['quantity']);
+		$quantity2=addslashes($_POST['quantity2']);
+		$quantity3=addslashes($_POST['quantity3']);
+		$quantity4=addslashes($_POST['quantity4']);
+        $p_id = isset($_GET['id']) ? $_GET['id'] : '';
+        $description=addslashes($_POST['desc']);
+        $tdtae=date("Y-m-d"); 
+		$doc= $_SESSION['staff_id']; 
+		
+
+		 $sql ="SELECT  * from stock where item_id = $stock_prescribed";
+                    $user_query=mysqli_query($db,$sql) or die("error getting data");
+                    while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+					$cost1 = $row['cost'];}
+					
+					$sql ="SELECT  * from stock where item_id = $stock_prescribed2";
+                    $user_query=mysqli_query($db,$sql) or die("error getting data");
+                    while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+					$cost2 = $row['cost'];}
+					
+					$sql ="SELECT  * from stock where item_id = $stock_prescribed3";
+                    $user_query=mysqli_query($db,$sql) or die("error getting data");
+                    while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+					$cost3 = $row['cost'];}
+					
+					$sql ="SELECT  * from stock where item_id = $stock_prescribed4";
+                    $user_query=mysqli_query($db,$sql) or die("error getting data");
+                    while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+					$cost4 = $row['cost'];}
+
+					if ($quantity == "") {$quantity = 0;}
+					if ($quantity2 == "") {$quantity2 = 0;}
+					if ($quantity3 == "") {$quantity3 = 0;}
+					if ($quantity4 == "") {$quantity4 = 0;}
+					
+					$total_cost = ($cost1 * $quantity) + ($cost2 * $quantity2) + ($cost3 * $quantity3) + ($cost4 * $quantity4);
 
     //<!--**************************************************************>
                         
     
-     mysqli_query($db,"INSERT INTO vitals(patient_id, dov, BP_sys, BP_dia, Temperature, Weight, Height,staff) VALUES ('$p_id','$tdate','$BPsys','$BPdia','$Temp','$Weight','$height','$staff')") or die(mysqli_error($db));
-
-?>
+     mysqli_query($db,"INSERT INTO pharmacy (doc, patient_id, stock_prescribed, prescription, quantity, description,stock_prescribed2, quantity2,stock_prescribed3, quantity3,stock_prescribed4, quantity4, total_cost, dop) VALUES ( '$doc', '$p_id','$stock_prescribed','$prescription', '$quantity',  '$description','$stock_prescribed2','$quantity2','$stock_prescribed3','$quantity3','$stock_prescribed4','$quantity4','$total_cost','$tdtae')") or die(mysqli_error($db));
+   
+     ?>
                         
                         
      <script>

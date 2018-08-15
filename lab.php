@@ -54,54 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/light.js"></script>	
 <!-- //lined-icons -->
 <script src="js/jquery-1.10.2.min.js"></script>
-   <!--pie-chart--->
-<script src="js/pie-chart.js" type="text/javascript"></script>
- <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('#demo-pie-1').pieChart({
-                barColor: '#3bb2d0',
-                trackColor: '#eee',
-                lineCap: 'round',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
-
-            $('#demo-pie-2').pieChart({
-                barColor: '#fbb03b',
-                trackColor: '#eee',
-                lineCap: 'butt',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
-
-            $('#demo-pie-3').pieChart({
-                barColor: '#ed6498',
-                trackColor: '#eee',
-                lineCap: 'square',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
-
-           
-        });
-
-
-
-   <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>school management system</title>
-    <link rel="shortcut icon" href="assets/img/title.gif" type="image/x-icon">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link href="assets/css/loader.css" rel="stylesheet" />
-    <script src="assets/js/canvasjs.min.js"></script>
-    <!--*****jquery -3.2.1.js file supports the use of dropdown***-->
+   
     <script src="assets/js/jquery-3.2.1.js"></script>
 <!--codes to run the script for constituencies and counties-->
           <script type='text/javascript'>
@@ -141,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<ul>
 											<li><a href="contact.html">help</a></li>|
 											<li><a href="contact.html">Contact</a></li>|
-											<li><a href="checkout.html">Delivery information</a></li>|
+											<li><a href="session_logout.php">Log out</a></li>|
 											<?php
         //Check to see if the user is logged in.if not redirect user to the loging page.
         
@@ -154,6 +107,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </script>";
                 echo "<script>
                     window.location = 'index.php'
+                  </script>";
+		}
+		
+
+
+		if($_SESSION['position'] == 6 || $_SESSION['position'] == 5)
+        { 
+        
+        }else{
+          echo "<script type='text/javascript'>
+                    alert( 'You must Log in as a Lab technician or Admin to view this page');
+                    </script>";
+                echo "<script>
+                    window.location = 'homepage.php'
                   </script>";
         }
         ?>
@@ -213,9 +180,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li id="menu-academico" ><a href="pharmacy1.php"><i class="fa fa-file-text-o"></i> <span>Pharmacy</span></a></li>
 									<li id="menu-academico" ><a href="billing1.php"><i class="lnr lnr-book"></i> <span>Billing</span></a></li>
 									 
-									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a></li>
+									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a>
+									<ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="reports.php">Visit Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_morbidity.php">Disease Rate Report</a></li>
+											<li id="menu-academico-boletim" ><a href="report_doctors.php">Doctor Patient Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_area.php">Morbidity Per Area</a></li>
+											 </ul>
+										</li>
 									  </ul>
-									 </li>
 									
 								  </ul>
 								</div>
@@ -276,7 +249,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					
 
-								<h1>Patient Vitals</h1>
+								<h1> Medical Emergency Form</h1>
                                 <?php 
                     
 
@@ -290,8 +263,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         <div class="form-body">
     <div class="bg-agile">
-	<div style ="height:1000px;"class="book-appointment">
-	<h2>Patient Vitals</h2>
+	<div style ="height:1600px;"class="book-appointment">
+	<h2>Lab Test Results</h2>
     <form action="" method="POST" enctype="multipart/form-data">
 				<div class="left-agileits-w3layouts same">
 					<div class="gaps">
@@ -299,36 +272,202 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" name="fname" id="fname" placeholder="<?php echo $fname ?>" readonly />
 					</div>	
 					<div class="gaps">
-					<label>BP Systolic</label>
-                                <input type="number" name="BPsys" placeholder="" id="BPsys" class="form-control" >
+						<p>FBC WBC</p>
+						<input type="text" name="fbc_wbc" id="hreferral" placeholder=""/>
 					</div>
 					<div class="gaps">
-					<label>BP Diastolic</label>
-                                <input type="number" name="BPdia" placeholder="" id="BPdias" class="form-control">
+						<p>FBC Hb</p>
+						<input type="text" name="fbc_hb" id="hreferral" placeholder=""/>
+					</div>
+					<div class="gaps">
+						<p>FBC Hct</p>
+						<input type="text" name="fbc_hct" id="hreferral" placeholder=""/>
+					</div>
+					<div class="gaps">
+						<p>FBC MCV</p>
+						<input type="text" name="fbc_mcv" id="hreferral" placeholder=""/>
+					</div>	
+					<div class="gaps">
+						<p>FBC Plt</p>
+						<input type="text" name="fbc_plt" id="hreferral" placeholder=""/>
 					</div>
 					
-						
-					
-                      
-					
+                        	
+					<div class="gaps">
+						<p>MPS</p>	
+						<select class="form-control" name="mps" id="status">
+							<option>NPS</option>
+							<option>+</option>
+							<option>++</option>
+							<option>+++</option>
+							<option>++++</option>
+						</select>
+					</div>
+					<div class="gaps">
+						<p>Malaria igM</p>	
+						<select class="form-control" name="malaria_igm" id="status">
+							<option>Negative</option>
+							<option>positive</option>
+						</select>
+					</div>
+					<div class="gaps">
+						<p>HIV</p>	
+						<select class="form-control" name="hiv" id="status">
+							<option>NR</option>
+							<option>R</option>
+							</select>
+					</div>
+					<div class="gaps">
+						<p>VDRL</p>	
+						<select class="form-control" name="vdrl" id="status">
+							<option>NR</option>
+							<option>R</option>
+							</select>
+					</div>	
+					<div class="gaps">
+						<p>Pregnancy</p>	
+						<select class="form-control" name="pregnancy" id="status">
+							<option>Negative</option>
+							<option>Positive</option>
+							</select>
+					</div>
+					<div class="gaps">
+						<p>Urinalysis Color</p>	
+						<select class="form-control" name="uli_color" id="status">
+							<option>yellow</option>
+							<option>amber</option>
+							<option>clear</option>
+							<option>cloudy</option>
+							</select>
+					</div>
+					<div class="gaps">
+						<p>Urinalysis Protein</p>	
+						<select class="form-control" name="uli_protein" id="status">
+							<option>neg</option>
+							<option>TR</option>
+							<option>+</option>
+							<option>++</option>
+							<option>+++</option>
+							<option>++++</option>
+							</select>
+					</div>
 				</div>
 				<div class="right-agileinfo same">
 					<div class="gaps">
 						<p>Last Name</p>
 						<input type="text" name="lName" id="lname" placeholder="<?php echo $lname ?>" readonly />
 					</div>
-					<div class="gaps">
-					<label> Weight (kg)</label>
-                                <input type="number" name="Weight" min="0" value="0" step="any" required class="form-control">
-					</div>
-					<div class="gaps">
-					<label> height (cm)</label>
-                                <input type="number" name="Height" required class="form-control">
-					</div>
-					<div class="gaps">
-					<label> Temperature (c)</label>
-                                <input type="number" name="Temp" min="0" value="0" step="any"  required class="form-control">
 					
+					
+					<div class="gaps">
+						<p>Urinalysis Glucose</p>	
+						<select class="form-control" name="uli_glucose" id="status">
+							<option>neg</option>
+							
+							<option>+</option>
+							<option>++</option>
+							<option>+++</option>
+							<option>++++</option>
+							</select>
+					</div>
+					
+					
+					<div class="gaps">
+						<p>Urinalysis Nitrites</p>	
+						<select class="form-control" name="uli_nitrites" id="status">
+							<option>negative</option>
+							<option>Positive</option>
+							
+							</select>
+					</div>
+					<div class="gaps">
+						<p>Stool Color Consistency</p>
+						<input type="text" name="stool_color" id="wbc" placeholder=""/>
+					</div>
+					<div class="gaps">
+						<p>Stool Other</p>
+						<input type="text" name="stool_other" id="rbc" placeholder=""/>
+					</div>
+					<div class="gaps">
+						<p>WBC</p>
+						<input type="text" name="wbc" id="wbc" placeholder=""/>
+					</div>
+					<div class="gaps">
+						<p>RBC</p>
+						<input type="text" name="rbc" id="rbc" placeholder=""/>
+					</div>
+					<div class="gaps">
+						<p>SH</p>	
+						<select class="form-control" name="sh" id="status">
+							<option>not seen</option>
+							
+							<option>+</option>
+							<option>++</option>
+							<option>+++</option>
+							<option>++++</option>
+							</select>
+					</div>
+					<div class="gaps">
+						<p>Epi</p>	
+						<select class="form-control" name="epi" id="status">
+						<option></option>
+							<option>+</option>
+							<option>++</option>
+							<option>+++</option>
+							<option>++++</option>
+							</select>
+					</div>
+					<div class="gaps">
+						<p>PH</p>	
+						<select class="form-control" name="ph" id="status">
+							
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							</select>
+					</div>
+					<div class="gaps">
+						<p>Leuk</p>	
+						<select class="form-control" name="leuk" id="status">
+						<option>neg</option>
+							<option>+</option>
+							<option>++</option>
+							<option>+++</option>
+							<option>++++</option>
+							</select>
+					</div>
+					<div class="gaps">
+						<p>Blood</p>	
+						<select class="form-control" name="blood" id="status">
+						<option>neg</option>
+							<option>+</option>
+							<option>++</option>
+							<option>+++</option>
+							<option>++++</option>
+							</select>
+					</div>
+					<div class="gaps">
+						<p>Ketones</p>	
+						<select class="form-control" name="ketones" id="status">
+						<option>neg</option>
+							<option>+</option>
+							<option>++</option>
+							<option>+++</option>
+							<option>++++</option>
+							</select>
+					</div>
+					<div class="gaps">
+						<p>Bilirubin</p>	
+						<select class="form-control" name="bilirubin2" id="status">
+						<option>neg</option>
+							<option>+</option>
+							<option>++</option>
+							<option>+++</option>
+							<option>++++</option>
+							</select>
+					</div>
 				</div>
 				
 				<input type="submit" name="register" value="Save Record" class="btn btn-success">
@@ -340,30 +479,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 </div>
 
-  <!--*************************************PHP CODES TO SAVE THE DATA************************************************-->
-<?php
-   // mysql_select_db('Visualisations2',mysqli_connect('localhost','root',''))or die(mysql_error());
+   <?php
+   // mysql_select_db('sms2',mysqli_connect('localhost','root',''))or die(mysql_error());
     if (isset($_POST['register'])){
 
-
-
-        $BPsys=addslashes($_POST['BPsys']);
-        $BPdia=addslashes($_POST['BPdia']);
-        $Weight=addslashes($_POST['Weight']);
-        $height=addslashes($_POST['Height']);
-		$Temp=addslashes($_POST['Temp']);
+  
+        $fbc_wbc=addslashes($_POST['fbc_wbc']);
+        $fbc_hb =addslashes($_POST['fbc_hb']);
+        $p_id = isset($_GET['id']) ? $_GET['id'] : '';
+        $fbc_hct=addslashes($_POST['fbc_hct']);
+        $fbc_mcv=addslashes($_POST['fbc_mcv']);
+        $fbc_plt=addslashes($_POST['fbc_plt']);
+        $mps=addslashes($_POST['mps']);
+		$hiv=addslashes($_POST['hiv']);
+		$vdrl=addslashes($_POST['vdrl']);
+        $pregnancy =addslashes($_POST['pregnancy']);
+        $uli_color=addslashes($_POST['uli_color']);
+        $uli_protein=addslashes($_POST['uli_protein']);
+        $uli_glucose=addslashes($_POST['uli_glucose']);
+        $uli_nitrites=addslashes($_POST['uli_nitrites']);
+        $stool_color =addslashes($_POST['stool_color']);
+		$stool_other=addslashes($_POST['stool_other']);
+		$malaria_igm=addslashes($_POST['malaria_igm']);
+		$sh=addslashes($_POST['sh']);
+		$epi=addslashes($_POST['epi']);
+		$ph=addslashes($_POST['ph']);
+		$wbc=addslashes($_POST['wbc']);
+        $rbc=addslashes($_POST['rbc']);
+        $leuk=addslashes($_POST['leuk']);
+        $blood=addslashes($_POST['blood']);
+		$ketones=addslashes($_POST['ketones']);
+		$bilirubin2=addslashes($_POST['bilirubin2']);
 		$tdate=date("Y-m-d"); 
-        $monthh = strtotime('date()');
-		$mon = date('Y-m-d',$monthh);
-		$p_id = isset($_GET['id']) ? $_GET['id'] : '';
-		$staff= $_SESSION['staff_id']; 
+        $doc= $_SESSION['staff_id'];       
 
     //<!--**************************************************************>
                         
     
-     mysqli_query($db,"INSERT INTO vitals(patient_id, dov, BP_sys, BP_dia, Temperature, Weight, Height,staff) VALUES ('$p_id','$tdate','$BPsys','$BPdia','$Temp','$Weight','$height','$staff')") or die(mysqli_error($db));
-
-?>
+     mysqli_query($db,"INSERT INTO lab_test (patient_id, tdate, doc, fbc_wbc, fbc_hb, fbc_hct, fbc_mcv, fbc_plt, mps, hiv, vdrl, pregnancy, uli_color, uli_protein, uli_glucose, uli_nitrites, stool_color, stool_other, malaria_igm, wbc, rbc, sh, epi, ph, leuk, blood, ketones, bilirubin2) VALUES ('$p_id', '$tdate', '$doc', '$fbc_wbc', '$fbc_hb', '$fbc_hct', '$fbc_mcv', '$fbc_plt', '$mps', '$hiv', '$vdrl', '$pregnancy', '$uli_color', '$uli_protein', '$uli_glucose', '$uli_nitrites', '$stool_color', '$stool_other', '$malaria_igm', '$wbc', '$rbc', '$sh', '$epi', '$ph', '$leuk', '$blood', '$ketones', '$bilirubin2')") or die(mysqli_error($db));
+   
+     ?>
                         
                         
      <script>

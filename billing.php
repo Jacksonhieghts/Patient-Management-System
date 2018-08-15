@@ -141,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<ul>
 											<li><a href="contact.html">help</a></li>|
 											<li><a href="contact.html">Contact</a></li>|
-											<li><a href="checkout.html">Delivery information</a></li>|
+											<li><a href="session_logout.php">Log out</a></li>|
 											<?php
         //Check to see if the user is logged in.if not redirect user to the loging page.
         
@@ -154,6 +154,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </script>";
                 echo "<script>
                     window.location = 'index.php'
+                  </script>";
+		}
+		
+		if($_SESSION['position'] == 7 || $_SESSION['position'] == 5)
+        { 
+        
+        }else{
+          echo "<script type='text/javascript'>
+                    alert( 'You must Log in as a Receptionist or Admin to view this page');
+                    </script>";
+                echo "<script>
+                    window.location = 'homepage.php'
                   </script>";
         }
         ?>
@@ -213,9 +225,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li id="menu-academico" ><a href="pharmacy1.php"><i class="fa fa-file-text-o"></i> <span>Pharmacy</span></a></li>
 									<li id="menu-academico" ><a href="billing1.php"><i class="lnr lnr-book"></i> <span>Billing</span></a></li>
 									 
-									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a></li>
+									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a>
+									<ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="reports.php">Visit Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_morbidity.php">Disease Rate Report</a></li>
+											<li id="menu-academico-boletim" ><a href="report_doctors.php">Doctor Patient Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_area.php">Morbidity Per Area</a></li>
+											 </ul>
+										</li>
 									  </ul>
-									 </li>
 									
 								  </ul>
 								</div>
@@ -276,7 +294,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					
 
-								<h1>Patient Vitals</h1>
+								<h1>Patient Billing</h1>
                                 <?php 
                     
 
@@ -284,33 +302,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     $user_query=mysqli_query($db,$sql) or die("error getting data");
                     while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
                     $fname = $row['firstname'];
-                    $lname = $row['lastname'];}
-                  
+					$lname = $row['lastname'];}
+					
+
+					$sql ="SELECT  * from pharmacy where patient_id = $p_id and dop = CURRENT_DATE ORDER BY pharmacy_id desc limit 1";
+                    $user_query=mysqli_query($db,$sql) or die("error getting data");
+                    while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+					$pharmacy_bill = $row['total_cost'];}
+
+					$sql ="SELECT  * from diagnosis where patient_id = $p_id and dod = CURRENT_DATE ORDER BY diagnosis_id desc limit 1";
+                    $user_query=mysqli_query($db,$sql) or die("error getting data");
+                    while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
+                    $lab_bill = $row['lab_cost'];}
+					$consultation_bill = 12;
+
+				  if ($pharmacy_bill == ""){$pharmacy_bill = 0;}
+				  if ($lab_bill == ""){$lab_bill = 0;}
+				  
+				  
                         ?>
 
                         <div class="form-body">
     <div class="bg-agile">
-	<div style ="height:1000px;"class="book-appointment">
-	<h2>Patient Vitals</h2>
+	<div class="book-appointment">
+	<h2>Patient Billing</h2>
     <form action="" method="POST" enctype="multipart/form-data">
 				<div class="left-agileits-w3layouts same">
 					<div class="gaps">
 						<p>First Name</p>
 						<input type="text" name="fname" id="fname" placeholder="<?php echo $fname ?>" readonly />
 					</div>	
+					
 					<div class="gaps">
-					<label>BP Systolic</label>
-                                <input type="number" name="BPsys" placeholder="" id="BPsys" class="form-control" >
+						<p>Pharmacy bill</p>
+						<input type="text" name="consultation" id="consultation" placeholder="<?php echo $pharmacy_bill ?>"/>
 					</div>
 					<div class="gaps">
-					<label>BP Diastolic</label>
-                                <input type="number" name="BPdia" placeholder="" id="BPdias" class="form-control">
+						<p>Consultation bill</p>
+						<input type="text" name="consultation" id="consultation" placeholder="<?php echo $consultation_bill ?>"/>
 					</div>
-					
-						
-					
                       
-					
+					<div class="gaps">
+						<p>Total bill</p>
+						<input type="text" name="total" id="total" placeholder=""/>
+					</div>
 				</div>
 				<div class="right-agileinfo same">
 					<div class="gaps">
@@ -318,17 +353,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" name="lName" id="lname" placeholder="<?php echo $lname ?>" readonly />
 					</div>
 					<div class="gaps">
-					<label> Weight (kg)</label>
-                                <input type="number" name="Weight" min="0" value="0" step="any" required class="form-control">
+						<p>Lab bill</p>
+						<input type="text" name="lab" id="lab"placeholder="<?php echo $lab_bill ?>"/>
 					</div>
-					<div class="gaps">
-					<label> height (cm)</label>
-                                <input type="number" name="Height" required class="form-control">
-					</div>
-					<div class="gaps">
-					<label> Temperature (c)</label>
-                                <input type="number" name="Temp" min="0" value="0" step="any"  required class="form-control">
 					
+					<div class="gaps">
+						<p>Other bills</p>
+						<input type="number" name="other" min="0" value="0" step="any" id="other" placeholder=""/>
+					</div>
+					<div class="gaps">
+						<p>Description</p>
+						<textarea id="desc" name="desc" placeholder="" title="Please enter prescription"></textarea>
+						</div>
 				</div>
 				
 				<input type="submit" name="register" value="Save Record" class="btn btn-success">
@@ -340,31 +376,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 </div>
 
-  <!--*************************************PHP CODES TO SAVE THE DATA************************************************-->
-<?php
+   <?php
    // mysql_select_db('Visualisations2',mysqli_connect('localhost','root',''))or die(mysql_error());
     if (isset($_POST['register'])){
 
 
+		$other=addslashes($_POST['other']);
+		
+		if ($other == ""){$other = 0;}
 
-        $BPsys=addslashes($_POST['BPsys']);
-        $BPdia=addslashes($_POST['BPdia']);
-        $Weight=addslashes($_POST['Weight']);
-        $height=addslashes($_POST['Height']);
-		$Temp=addslashes($_POST['Temp']);
-		$tdate=date("Y-m-d"); 
-        $monthh = strtotime('date()');
-		$mon = date('Y-m-d',$monthh);
-		$p_id = isset($_GET['id']) ? $_GET['id'] : '';
-		$staff= $_SESSION['staff_id']; 
+		$total_bill = $lab_bill + $pharmacy_bill + $consultation_bill + $other;
+
+		
+      
+        $p_id = isset($_GET['id']) ? $_GET['id'] : '';
+        $description=addslashes($_POST['desc']);
+        $tdtae=date("Y-m-d"); 
+		$staff= $_SESSION['staff_id'];      
+		
 
     //<!--**************************************************************>
                         
     
-     mysqli_query($db,"INSERT INTO vitals(patient_id, dov, BP_sys, BP_dia, Temperature, Weight, Height,staff) VALUES ('$p_id','$tdate','$BPsys','$BPdia','$Temp','$Weight','$height','$staff')") or die(mysqli_error($db));
-
-?>
-                        
+     mysqli_query($db,"INSERT INTO billing ( patient_id, pharmacy_cost, lab_cost, consultation_fee, other_fee, description, total_bill, staff_id, dob) VALUES ( '$p_id','$pharmacy_bill', '$lab_bill', '$consultation_bill', '$other', '$description', '$total_bill', '$staff', '$tdtae')") or die(mysqli_error($db));
+   
+     ?>
+  <script type="text/javascript">location.href = 'billing2.php?id=<?php echo $p_id; ?>'</script>                 
                         
      <script>
 

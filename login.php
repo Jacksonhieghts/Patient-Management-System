@@ -22,7 +22,7 @@ function clean($str) {
 	//$role = ($_POST['role']);
 	
 		//Create query
-	$qry="SELECT * FROM staff WHERE username='$username' AND password='$password'";
+	$qry="SELECT * FROM staff WHERE email='$username' AND password='$password'";
 	$result=mysqli_query($db,$qry);
 	
 	
@@ -32,7 +32,7 @@ if($result)
 			//Login Successful
 			session_regenerate_id();
 			$member = mysqli_fetch_assoc($result);
-			$_SESSION['username'] = $member['username'];
+			
 			$_SESSION['password'] = $member['password'];
 			$_SESSION['fname'] = $member['firstname'];
 			$_SESSION['lname'] = $member['lastname'];
@@ -53,7 +53,7 @@ if($result)
 		}
 else
 	{
-	die("Query failed");
+	die("Login failed");
 	}	
 	
 

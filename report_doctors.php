@@ -1,7 +1,7 @@
 <?php
-error_reporting(0);//turning off error reporting
+//error_reporting(1);//turning off error reporting
 include("connect.php");
-$sql="SELECT patient_id FROM patients where patient_id LIKE '%CCA%'";
+$sql="SELECT patientid FROM patients where patientid LIKE '%PID%'";
 $records=mysqli_query($db,$sql);
 
 
@@ -20,70 +20,22 @@ SESSION_START();
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="css1/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="css1/style.css" rel='stylesheet' type='text/css' />
 <!-- Graph CSS -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css1/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
 <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
 <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <!-- lined-icons -->
-<link rel="stylesheet" href="css/icon-font.min.css" type='text/css' />
+<link rel="stylesheet" href="css1/icon-font.min.css" type='text/css' />
 <script src="js/simpleCart.min.js"> </script>
 <script src="js/amcharts.js"></script>	
 <script src="js/serial.js"></script>	
 <script src="js/light.js"></script>	
 <!-- //lined-icons -->
 <script src="js/jquery-1.10.2.min.js"></script>
-<!--*************** Patient ID search text box*************************************************-->
-<script>
-function myFunction() {
-  // Declare variables 
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    } 
-  }
-}
-</script>
-<!--***************Patient Name search text box*************************************************-->
-<script>
-function myFunction2() {
-  // Declare variables 
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput2");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    } 
-  }
-}
-</script>
-
-
    <!--pie-chart--->
 <script src="js/pie-chart.js" type="text/javascript"></script>
  <script type="text/javascript">
@@ -152,7 +104,59 @@ function myFunction2() {
     }
 </style>
 <!--styling up the heading of form-->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ <script type="text/javascript">
+ google.load("visualization", "1", {packages:["corechart"]});
+ google.setOnLoadCallback(drawChart);
+ google.setOnLoadCallback(drawChart2);
+ function drawChart() {
+ var data = google.visualization.arrayToDataTable([
 
+ ['Doctor', 'Patients'],
+ <?php 
+ $query = "SELECT count(diagnosis.patient_id) AS count, firstname FROM staff join diagnosis on diagnosis.doctor = staff.staff_id GROUP BY firstname ORDER BY firstname";
+
+ $exec = mysqli_query($db,$query);
+ while($row = mysqli_fetch_array($exec)){
+
+ echo "['".$row['firstname']."',".$row['count']."],";
+ }
+ ?>
+ 
+ ]);
+
+ var options = {
+ title: 'Doctor Patient Ratio'
+ };
+ var chart = new google.visualization.ColumnChart(document.getElementById("columnchart"));
+ chart.draw(data, options);
+
+ }
+
+ function drawChart2() {
+ var data = google.visualization.arrayToDataTable([
+
+ ['Doctor', 'Patients'],
+ <?php 
+ $query = "SELECT count(diagnosis.patient_id) AS count, firstname FROM staff join diagnosis on diagnosis.doctor = staff.staff_id GROUP BY firstname ORDER BY firstname";
+
+ $exec = mysqli_query($db,$query);
+ while($row = mysqli_fetch_array($exec)){
+
+ echo "['".$row['firstname']."',".$row['count']."],";
+ }
+ ?>
+ 
+ ]);
+
+ var options = {
+ title: 'Doctor Patient Ratio'
+ };
+
+ var chart = new google.visualization.PieChart(document.getElementById("piechart"));
+ chart.draw(data, options);
+ }
+ </script>
 </head>
 
 <body >
@@ -169,9 +173,9 @@ function myFunction2() {
 								<div class="header_top">
 									<div class="top_right">
 										<ul>
-											<li><a href="contact.html">help</a></li>|
+											<li><a href="homepage.php">Homepage</a></li>|
 											<li><a href="contact.html">Contact</a></li>|
-											<li><a href="checkout.html">Delivery information</a></li>|
+											<li><a href="session_logout.php">Log Out</a></li>|
 											<?php
         //Check to see if the user is logged in.if not redirect user to the loging page.
         
@@ -185,8 +189,7 @@ function myFunction2() {
                 echo "<script>
                     window.location = 'index.php'
                   </script>";
-		}
-	
+        }
         ?>
 											
 										</ul>
@@ -228,37 +231,31 @@ function myFunction2() {
 										<li><a href="homepage.php"><i class="fa fa-tachometer"></i> <span>Administration</span></a></li>
 										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Patient</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										   <ul id="menu-academico-sub" >
-										   <li id="menu-academico-avaliacoes" ><a href="students.php">New Student</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="viewstudentsedit1.php">Edit Student</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="csvstudents.php">Import/Export Data</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="billingstudent.php">Billing</a></li>
-											<li id="menu-academico-boletim" ><a href="studentcreditnotes.php">Credit Notes</a></li>
-											
-											
-										  </ul>
+										   <li id="menu-academico-avaliacoes" ><a href="patients.php">Register patient</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="vitals1.php">Vitals</a></li>
+											<li id="menu-academico-boletim" ><a href="visits1.php">Visits</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="doctors_list.php">Diagnosis</a></li>
+											 </ul>
 										</li>
-										 <li id="menu-academico" ><a href="staff.php"><i class="fa fa-file-text-o"></i> <span>Staff Member</span></a></li>
-									<li><a href="course.php"><i class="lnr lnr-pencil"></i> <span>Diagnosis</span></a></li>
-									<li id="menu-academico" ><a href="departments.php"><i class="fa fa-file-text-o"></i> <span>Departments</span></a></li>
-									<li id="menu-academico" ><a href="markstep1.php"><i class="lnr lnr-book"></i> <span>Lab</span></a></li>
-									 <li><a href="Reports.php"><i class="lnr lnr-envelope"></i> <span>Reports</span></a></li>
-									<li><a href="Visualisations.php"><i class="lnr lnr-chart-bars"></i> <span>Visualisations</span></a></li>
-							        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Tabs & Calender</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-										 <ul id="menu-academico-sub" >
-											<li id="menu-academico-avaliacoes" ><a href="tabs.html">Tabs</a></li>
-											<li id="menu-academico-boletim" ><a href="calender.html">Calender</a></li>
-
-										  </ul>
-									 </li>
-									<li><a href="#"><i class="lnr lnr-chart-bars"></i> <span>Forms</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-									  <ul>
-										<li><a href="input.html"> Input</a></li>
-										<li><a href="validation.html">Validation</a></li>
-									</ul>
-									</li>
-								  </ul>
+										<li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Staff</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										   <ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="staff.php">Register Staff</a></li>
+											
+											 </ul>
+										</li>
+									<li><a href="lab1.php"><i class="lnr lnr-pencil"></i> <span>Laboratory</span></a></li>
+									<li id="menu-academico" ><a href="pharmacy1.php"><i class="fa fa-file-text-o"></i> <span>Pharmacy</span></a></li>
+									<li id="menu-academico" ><a href="billing1.php"><i class="lnr lnr-book"></i> <span>Billing</span></a></li>
+									 
+									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a>
+									<ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="reports.php">Visit Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_morbidity.php">Disease Rate Report</a></li>
+											<li id="menu-academico-boletim" ><a href="report_doctors.php">Doctor Patient Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_area.php">Morbidity Per Area</a></li>
+											 </ul>
+										</li>
+									  </ul>
 								</div>
 							  </div>
 							  <div class="clearfix"></div>	
@@ -509,117 +506,22 @@ function myFunction2() {
                 
                 <p>
                     <div class="table-responsive"  >
-<!--**************************************************************************************************************************-->
+<!--*************************************************************************************************************************-->
+              
                         
-<!--**************ths is the success msg on saving the cord-->
-                
-  <!--*************************************************************************************************************************-->
-<div class="grids">
-					
-					<div class="panel panel-widget forms-panel">
-						<div class="forms">
-							<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
-								<div class="form-title">
-									<h5>Basic Form :</h5>
+						
 
-								</div>
-								<div class="form-body">
-                        
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="table"> 
-
-                      <!--*************************************************************************************************************************-->
-
-                
-                <!-- Page Heading -->
-                <nav>             
-                
-                        <!-- block -->                      
-                        <div id="block_bg" class="block">   
-                            <div class="navbar navbar-inner block-header">
-                            <table>
-                            <tr>
-                            <td><a button type='button' class="btn btn-primary" href="homepage.php">Back</a> &nbsp;&nbsp;</td>
-                            <td><a button type='button' class="btn btn-primary" href="csvfee.php">Backup Transactions</a> &nbsp;&nbsp;</td>
-                            <td><label><b>Search Patient ID</b></label></td>
-                            <td><input type="text" name="myInput" id="myInput" class="form-control"
-                             placeholder="Patient ID" onkeyup="myFunction()"></td>
-                             <td><label><b>Name</b></label></td>
-                             <td><input type="text" name="myInput2" id="myInput2" class="form-control"
-                             placeholder="Name" onkeyup="myFunction2()"></td>
-                            
-                             </tr>
-                                <br>
-								
-								
-                            <div class="block-content collapse in">
-                                <div class="span12">
-    <p>
-	
-                            <form method="post">
-                                    <div class="table-responsive">
-                                    <table cellpadding="0" cellspacing="0" border="0" class="table" id="myTable">
-                                    
-                                        <thead>
-                                          <tr>
-                                                <th></th>
-                                                <th><center>Adm No.</center></th>
-                                                <th><center>Name</center></th>
-                                                <th><center>Gender</center></th>
-                                                <th><center>Class</center></th>
-                                                <th><center>Mobile</center></th>
-                                                <th><center>Address</center></th>
-                                                <th><center>Reg. Date</center></th>
-                                                <th><center>Pay</center></th>
-                                                <th><center>View payment log</center></th>
-                                                <script src="assets/js/jquery.dataTables.min.js"></script>
-                                                <script src="assets/js/DT_bootstrap.js"></script>
-                                                <th></th>
-                                           </tr>
-                                        </thead>
-                                        <tbody>
-                        <?php 
-                    
-
-                    $sql ="SELECT  * from patients_table";
-                    $user_query=mysqli_query($db,$sql) or die("error getting data");
-                    while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
-                    $id = $row['patient_id'];
-                  
-                        ?>
-                                                <tr>
-                                                <td width="30">
-                                                <input id="optionsCheckbox" class="uniform_on" name="selector[]" type="checkbox" value="<?php echo $id; ?>">
-                                                </td>
-                                                <td><center><?php echo $row['patient_id']; ?></center></td>
-                                                <td><center><?php echo $row['firstname']." ".$row['lastname']; ?></center></td>
-                                                <td><center><?php echo $row['gender']; ?></center></td>
-                                                <td><center><?php echo $row['idno']; ?></center></td>
-                                                <td><center><?php echo $row['mobile']; ?></center></td>
-                                                <td><center><?php echo $row['p_address']."-".$row['area']; ?></center></td>
-                                                <td><center><?php echo $row['reg_date']; ?></center></td>
-                                            
-                                                <td>
-                                                <center><a href="fee.php <?php echo '?id='.$id; ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok-circle"></i>Pay</a></center></td>
-                                                <td><center><a href="paymentlog.php <?php echo '?id='.$id; ?>" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i>View log</a></center></td>
-                                            
-                            </tr>
-                                                <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </form>
-                                
-
-            </div>
-                            </div>
-                        </div>
-                    </div>
-            <!-- /.container-fluid -->
-
-     
-  <!--*********************************************************************************-->  
-
+						
+<table class="columns">
+      <tr>
+        <td><div id="columnchart" style="width: 700px; height: 700px;"></div></div></td>
+        <td><div id="piechart" style="width: 700px; height: 700px;"></div></div></td>
+      </tr>
+    </table>						
+						
+</div>
+</div>
+                         
     
    
     <script src="assets/js/jquery.min.js"></script>

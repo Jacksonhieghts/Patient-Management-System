@@ -155,6 +155,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 echo "<script>
                     window.location = 'index.php'
                   </script>";
+		}
+		
+		if($_SESSION['position'] == 4 || $_SESSION['position'] == 5)
+        { 
+        
+        }else{
+          echo "<script type='text/javascript'>
+                    alert( 'You must Log in as a Doctor(GP) or Admin to view this page');
+                    </script>";
+                echo "<script>
+                    window.location = 'homepage.php'
+                  </script>";
         }
         ?>
 											
@@ -193,40 +205,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</header>
 						<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
                            <div class="menu">
-									<ul id="menu" >
+						   <ul id="menu" >
 										<li><a href="homepage.php"><i class="fa fa-tachometer"></i> <span>Administration</span></a></li>
-										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Student</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Patient</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										   <ul id="menu-academico-sub" >
-										   <li id="menu-academico-avaliacoes" ><a href="students.php">New Student</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="viewstudentsedit1.php">Edit Student</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="csvstudents.php">Import/Export Data</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="billingstudent.php">Billing</a></li>
-											<li id="menu-academico-boletim" ><a href="studentcreditnotes.php">Credit Notes</a></li>
-											
-											
-										  </ul>
+										   <li id="menu-academico-avaliacoes" ><a href="patients.php">Register patient</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="vitals1.php">Vitals</a></li>
+											<li id="menu-academico-boletim" ><a href="visits1.php">Visits</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="doctors_list.php">Diagnosis</a></li>
+											 </ul>
 										</li>
-										 <li id="menu-academico" ><a href="staff.php"><i class="fa fa-file-text-o"></i> <span>Staff Member</span></a></li>
-									<li><a href="course.php"><i class="lnr lnr-pencil"></i> <span>Courses</span></a></li>
-									<li id="menu-academico" ><a href="departments.php"><i class="fa fa-file-text-o"></i> <span>Departments</span></a></li>
-									<li id="menu-academico" ><a href="markstep1.php"><i class="lnr lnr-book"></i> <span>Exams</span></a></li>
-									 <li><a href="hostel.php"><i class="lnr lnr-envelope"></i> <span>Hostel</span></a></li>
-									<li><a href="sms.php"><i class="lnr lnr-chart-bars"></i> <span>SMS</span></a></li>
-							        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Tabs & Calender</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-										 <ul id="menu-academico-sub" >
-											<li id="menu-academico-avaliacoes" ><a href="tabs.html">Tabs</a></li>
-											<li id="menu-academico-boletim" ><a href="calender.html">Calender</a></li>
-
-										  </ul>
-									 </li>
-									<li><a href="#"><i class="lnr lnr-chart-bars"></i> <span>Forms</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-									  <ul>
-										<li><a href="input.html"> Input</a></li>
-										<li><a href="validation.html">Validation</a></li>
-									</ul>
-									</li>
+										<li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Staff</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										   <ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="staff.php">Register Staff</a></li>
+											
+											 </ul>
+										</li>
+									<li><a href="lab1.php"><i class="lnr lnr-pencil"></i> <span>Laboratory</span></a></li>
+									<li id="menu-academico" ><a href="pharmacy1.php"><i class="fa fa-file-text-o"></i> <span>Pharmacy</span></a></li>
+									<li id="menu-academico" ><a href="billing1.php"><i class="lnr lnr-book"></i> <span>Billing</span></a></li>
+									 
+									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a>
+									<ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="reports.php">Visit Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_morbidity.php">Disease Rate Report</a></li>
+											<li id="menu-academico-boletim" ><a href="report_doctors.php">Doctor Patient Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_area.php">Morbidity Per Area</a></li>
+											 </ul>
+										</li>
+									  </ul>
+									
 								  </ul>
 								</div>
 							  </div>
@@ -300,7 +308,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         <div class="form-body">
     <div class="bg-agile">
-	<div class="book-appointment">
+	<div style ="height:1200px;"class="book-appointment">
 	<h2>Medical Information</h2>
     <form action="" method="POST" enctype="multipart/form-data">
 				<div class="left-agileits-w3layouts same">
@@ -350,15 +358,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p>Lab/scan test description</p>
 						<textarea id="lab_scan" name="lab_scan" placeholder="" title="Please enter Your Comments"></textarea>
 						</div>
-                        	
-					<div class="gaps">
-						<p>status</p>	
-						<select class="form-control" name="status" id="status">
-							<option></option>
-							<option>Done</option>
-							<option>Pending results</option>
-						</select>
-					</div>
+							
+						<div class="gaps">
+						<input type="checkbox" name="urinalysis" value="1" />Urinalysis
+						</div>
+						<div class="gaps">
+						<input type="checkbox" name="fbc" value="1" />Full Blood Count
+						</div>
+						<div class="gaps">
+						<input type="checkbox" name="stool" value="1" />Stool
+						</div>
+						<div class="gaps">
+						<input type="checkbox" name="pregnancy" value="1" />Pregnancy
+						</div>
+						<div class="gaps">
+						<input type="checkbox" name="hiv" value="1" />HIV
+						</div>
+						<div class="gaps">
+						<input type="checkbox" name="malaria" value="1" />Malaria
+						</div>
+
+
+					
 						
 					
 				</div>
@@ -417,6 +438,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p>Prescription</p>
 						<textarea id="prescription" name="prescription" placeholder="" title="Please enter prescription"></textarea>
 						</div>
+
+						<div class="gaps">
+						<p>status</p>	
+						<select class="form-control" name="status" id="status">
+							<option></option>
+							<option>Done</option>
+							<option>Pending results</option>
+						</select>
+					</div>
 				</div>
 				
 				<input type="submit" name="register" value="Save Record" class="btn btn-success">
@@ -429,7 +459,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 
    <?php
-   // mysql_select_db('sms2',mysqli_connect('localhost','root',''))or die(mysql_error());
+   // mysql_select_db('Visualisations2',mysqli_connect('localhost','root',''))or die(mysql_error());
     if (isset($_POST['register'])){
 
         $xx=$_POST['symptom1'];
@@ -463,12 +493,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $lreferral=addslashes($_POST['lreferral']);
         $admit=addslashes($_POST['admit']);
         $tdtae=date("Y-m-d"); 
-        $doc= $_SESSION['staff_id'];       
+		$doc= $_SESSION['staff_id'];     
+		
+		 if(isset($_POST['urinalysis']) &&
+		$_POST["urinalysis"] == '1'){$u_cost = 20; $urinalysis = 'yes';} else{$u_cost = 0; $urinalysis = 'no';}
+		if(isset($_POST['fbc']) &&
+        $_POST["fbc"] == '1'){$fbc_cost = 50; $fbc = 'yes';}else{$fbc_cost = 0; $fbc = 'no';}
+		if(isset($_POST["stool"]) &&
+          $_POST["stool"] == '1'){$stool_cost = 30; $stool = 'yes';}else{$stool_cost = 0; $stool = 'no';}
+		  if(isset($_POST['pregnancy']) &&
+		  $_POST["pregnancy"] == '1'){$pregnancy_cost = 20; $pregnancy = 'yes';}else{$pregnancy_cost = 0; $pregnancy = 'no';}
+		  if(isset($_POST['hiv']) &&
+		  $_POST["hiv"] == '1'){$hiv_cost = 20; $hiv = 'yes';}else{$hiv_cost = 0; $hiv = 'no';}
+		  if(isset($_POST['malaria']) &&
+		  $_POST["malaria"] == '1'){$malaria_cost = 25; $malaria = 'yes';}else{$malaria_cost = 0; $malaria = 'no';}
+		$lab_cost = (int)$u_cost + (int)$fbc_cost + (int)$stool_cost + (int)$pregnancy_cost + (int)$hiv_cost + (int)$malaria_cost;
 
     //<!--**************************************************************>
                         
     
-     mysqli_query($db,"INSERT INTO diagnosis ( dod, doctor, symptom1, symptom2, hosp_referral, admissions, scan_referral, detailed_symptoms, disease, notes, lab_referral, lab_scan_desc, prescription, next_appointment, status) VALUES ( '$tdtae', '$doc', '$symptom1', '$symptom2', '$hreferral', '$admit', '$sreferral', '$dsymptom', '$ddiagnosis','$notes', '$lreferral', '$lab_scan', '$presc', '$app', '$status')") or die(mysqli_error($db));
+     mysqli_query($db,"INSERT INTO diagnosis (patient_id, dod, doctor, symptom1, symptom2, hosp_referral, admissions, scan_referral, detailed_symptoms, disease, notes, lab_referral, lab_scan_desc, prescription, next_appointment,urinalysis,fbc,stool,pregnancy,hiv,malaria,lab_cost, status) VALUES ( '$p_id','$tdtae', '$doc', '$symptom1', '$symptom2', '$hreferral', '$admit', '$sreferral', '$dsymptom', '$ddiagnosis','$notes', '$lreferral', '$lab_scan', '$presc', '$app','$urinalysis','$fbc','$stool','$pregnancy','$hiv','$malaria','$lab_cost', '$status')") or die(mysqli_error($db));
    
      ?>
                         

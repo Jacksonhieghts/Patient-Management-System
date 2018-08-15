@@ -69,7 +69,7 @@ h1 {
     background:#3f3d3d;
     padding: 50px 30px;
 }
-.book-appointment input[type="text"], .book-appointment input[type="date"], .book-appointment input[type="time"], .book-appointment input[type="email"],textarea {
+.book-appointment input[type="text"], .book-appointment input[type="date"],.book-appointment input[type="number"], .book-appointment input[type="time"], .book-appointment input[type="email"],textarea {
     width: 85%;
     color: #fff;
     outline: none;
@@ -217,7 +217,7 @@ p.wickedpicker__title {
 	.gaps {
 		padding-left: 2em;
 	}
-	.book-appointment input[type="text"], .book-appointment input[type="date"], .book-appointment input[type="time"], .book-appointment input[type="email"], textarea {
+	.book-appointment input[type="text"], .book-appointment input[type="date"],.book-appointment input[type="number"], .book-appointment input[type="time"], .book-appointment input[type="email"], textarea {
 		width: 90%;
 	}
 	.book-appointment select.form-control {

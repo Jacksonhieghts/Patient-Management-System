@@ -121,9 +121,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="header_top">
 									<div class="top_right">
 										<ul>
-											<li><a href="contact.html">help</a></li>|
+											<li><a href="homepage.php">Homepage</a></li>|
 											<li><a href="contact.html">Contact</a></li>|
-											<li><a href="checkout.html">Delivery information</a></li>|
+											<li><a href="session_logout.php">Log Out</a></li>|
 											<?php
         //Check to see if the user is logged in.if not redirect user to the loging page.
         
@@ -179,37 +179,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<li><a href="homepage.php"><i class="fa fa-tachometer"></i> <span>Administration</span></a></li>
 										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Patient</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										   <ul id="menu-academico-sub" >
-										   <li id="menu-academico-avaliacoes" ><a href="students.php">New patient</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewpatientrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="viewpatientsedit1.php">Edit patients</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="csvpatients.php">Import/Export Data</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewpatientrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="billingpatient.php">Billing</a></li>
-											<li id="menu-academico-boletim" ><a href="patientcreditnotes.php">Credit Notes</a></li>
-											
-											
-										  </ul>
+										   <li id="menu-academico-avaliacoes" ><a href="patients.php">Register patient</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="vitals1.php">Vitals</a></li>
+											<li id="menu-academico-boletim" ><a href="visits1.php">Visits</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="doctors_list.php">Diagnosis</a></li>
+											 </ul>
 										</li>
-										 <li id="menu-academico" ><a href="staff.php"><i class="fa fa-file-text-o"></i> <span>Manage Staff</span></a></li>
-									<li><a href="course.php"><i class="lnr lnr-pencil"></i> <span>Manage Medicine</span></a></li>
-									<li id="menu-academico" ><a href="departments.php"><i class="fa fa-file-text-o"></i> <span>Manage Diseases</span></a></li>
-									<li id="menu-academico" ><a href="markstep1.php"><i class="lnr lnr-book"></i> <span>Pharmacy</span></a></li>
-									 <li><a href="hostel.php"><i class="lnr lnr-envelope"></i> <span>In Patients</span></a></li>
-									<li><a href="sms.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a></li>
-							        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Lab Results</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-										 <ul id="menu-academico-sub" >
-											<li id="menu-academico-avaliacoes" ><a href="tabs.html">Tabs</a></li>
-											<li id="menu-academico-boletim" ><a href="calender.html">Calender</a></li>
-
-										  </ul>
-									 </li>
-									<li><a href="#"><i class="lnr lnr-chart-bars"></i> <span>Forms</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-									  <ul>
-										<li><a href="input.html"> Input</a></li>
-										<li><a href="validation.html">Validation</a></li>
-									</ul>
-									</li>
-								  </ul>
+										<li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Staff</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										   <ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="staff.php">Register Staff</a></li>
+											
+											 </ul>
+										</li>
+									<li><a href="lab1.php"><i class="lnr lnr-pencil"></i> <span>Laboratory</span></a></li>
+									<li id="menu-academico" ><a href="pharmacy1.php"><i class="fa fa-file-text-o"></i> <span>Pharmacy</span></a></li>
+									<li id="menu-academico" ><a href="billing1.php"><i class="lnr lnr-book"></i> <span>Billing</span></a></li>
+									 
+									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a>
+									<ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="reports.php">Visit Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_morbidity.php">Disease Rate Report</a></li>
+											<li id="menu-academico-boletim" ><a href="report_doctors.php">Doctor Patient Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_area.php">Morbidity Per Area</a></li>
+											 </ul>
+										</li>
+									  </ul>
 								</div>
 							  </div>
 							  <div class="clearfix"></div>	

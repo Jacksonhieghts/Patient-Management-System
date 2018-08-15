@@ -175,7 +175,7 @@ function myFunction2() {
 										<ul>
 											<li><a href="contact.html">help</a></li>|
 											<li><a href="contact.html">Contact</a></li>|
-											<li><a href="checkout.html">Delivery information</a></li>|
+											<li><a href="session_logout.php">Log out</a></li>|
 											<?php
         //Check to see if the user is logged in.if not redirect user to the loging page.
         
@@ -189,7 +189,21 @@ function myFunction2() {
                 echo "<script>
                     window.location = 'index.php'
                   </script>";
-        }
+		}
+		
+		if($_SESSION['position'] == 7 || $_SESSION['position'] == 5)
+        { 
+        
+        }else{
+          echo "<script type='text/javascript'>
+                    alert( 'You must Log in as a Receptionist or Admin to view this page');
+                    </script>";
+                echo "<script>
+                    window.location = 'homepage.php'
+                  </script>";
+		}
+		
+		
         ?>
 											
 										</ul>
@@ -227,40 +241,30 @@ function myFunction2() {
 					</header>
 						<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
                            <div class="menu">
-									<ul id="menu" >
+						   <ul id="menu" >
 										<li><a href="homepage.php"><i class="fa fa-tachometer"></i> <span>Administration</span></a></li>
-										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Student</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Patient</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										   <ul id="menu-academico-sub" >
-										   <li id="menu-academico-avaliacoes" ><a href="students.php">New Student</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="viewstudentsedit1.php">Edit Student</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="csvstudents.php">Import/Export Data</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="billingstudent.php">Billing</a></li>
-											<li id="menu-academico-boletim" ><a href="studentcreditnotes.php">Credit Notes</a></li>
-											
-											
-										  </ul>
+										   <li id="menu-academico-avaliacoes" ><a href="patients.php">Register patient</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="vitals1.php">Vitals</a></li>
+											<li id="menu-academico-boletim" ><a href="visits1.php">Visits</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="doctors_list.php">Diagnosis</a></li>
+											 </ul>
 										</li>
-										 <li id="menu-academico" ><a href="staff.php"><i class="fa fa-file-text-o"></i> <span>Staff Member</span></a></li>
-									<li><a href="course.php"><i class="lnr lnr-pencil"></i> <span>Courses</span></a></li>
-									<li id="menu-academico" ><a href="departments.php"><i class="fa fa-file-text-o"></i> <span>Departments</span></a></li>
-									<li id="menu-academico" ><a href="markstep1.php"><i class="lnr lnr-book"></i> <span>Exams</span></a></li>
-									 <li><a href="hostel.php"><i class="lnr lnr-envelope"></i> <span>Hostel</span></a></li>
-									<li><a href="sms.php"><i class="lnr lnr-chart-bars"></i> <span>SMS</span></a></li>
-							        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Tabs & Calender</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-										 <ul id="menu-academico-sub" >
-											<li id="menu-academico-avaliacoes" ><a href="tabs.html">Tabs</a></li>
-											<li id="menu-academico-boletim" ><a href="calender.html">Calender</a></li>
-
-										  </ul>
+										<li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Staff</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										   <ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="staff.php">Register Staff</a></li>
+											
+											 </ul>
+										</li>
+									<li><a href="lab1.php"><i class="lnr lnr-pencil"></i> <span>Laboratory</span></a></li>
+									<li id="menu-academico" ><a href="pharmacy1.php"><i class="fa fa-file-text-o"></i> <span>Pharmacy</span></a></li>
+									<li id="menu-academico" ><a href="billing1.php"><i class="lnr lnr-book"></i> <span>Billing</span></a></li>
+									 
+									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a></li>
+									  </ul>
 									 </li>
-									<li><a href="#"><i class="lnr lnr-chart-bars"></i> <span>Forms</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-									  <ul>
-										<li><a href="input.html"> Input</a></li>
-										<li><a href="validation.html">Validation</a></li>
-									</ul>
-									</li>
+									
 								  </ul>
 								</div>
 							  </div>
@@ -599,8 +603,7 @@ function myFunction2() {
                                                 <th><center>Doctor</center></th>
                                                 <th><center>Payment Type</center></th>
                                                 
-                                                <th><center>Pay</center></th>
-                                                <th><center>View payment log</center></th>
+                                               
                                                 <script src="assets/js/jquery.dataTables.min.js"></script>
                                                 <script src="assets/js/DT_bootstrap.js"></script>
                                                 <th></th>
@@ -627,10 +630,7 @@ function myFunction2() {
 												<td><center><?php echo $row['insurance_name']; ?></center></td>
                                                 
                                             
-                                                <td>
-                                                <center><a href="fee.php <?php echo '?id='.$id; ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok-circle"></i>Pay</a></center></td>
-                                                <td><center><a href="diagnosis.php <?php echo '?id='.$id; ?>" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i>View log</a></center></td>
-                                            
+                                                
                             </tr>
 
 							
@@ -678,18 +678,21 @@ function myFunction2() {
 		mysqli_query($db,"INSERT INTO visits(patient_id, v_date, staff_assigned, payment_type) VALUES ('$p_id','$tdate','$staff_id','$insurance_id')") or die(mysqli_error($db));
 
 
-		}
+		?>
+                        
+                        
+     <script>
 
-	
+     alert('Succsessfully Saved');
+    
+     </script>
+<?php
+   
+   
+   
+   
+    }
 ?>
-     
-  <!--*********************************************************************************-->  
-  <script>
- 
- // alert('Succsessfully Saved!');
-
- </script>
-
  
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

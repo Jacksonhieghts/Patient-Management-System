@@ -8,11 +8,12 @@ $records=mysqli_query($db,$sql);
 ?>
 <?php
 SESSION_START();
+
 ?>
 
 <!DOCTYPE html>
 <html>
-
+<?php 	$p_id = isset($_GET['id']) ? $_GET['id'] : '';?>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -171,7 +172,7 @@ function myFunction2() {
 										<ul>
 											<li><a href="contact.html">help</a></li>|
 											<li><a href="contact.html">Contact</a></li>|
-											<li><a href="checkout.html">Delivery information</a></li>|
+											<li><a href="session_logout.php">Log out</a></li>|
 											<?php
         //Check to see if the user is logged in.if not redirect user to the loging page.
         
@@ -185,8 +186,19 @@ function myFunction2() {
                 echo "<script>
                     window.location = 'index.php'
                   </script>";
-		}
-	
+        }
+
+        if($_SESSION['position'] == 7 || $_SESSION['position'] == 5)
+        { 
+        
+        }else{
+          echo "<script type='text/javascript'>
+                    alert( 'You must Log in as a Receptionist or Admin to view this page');
+                    </script>";
+                echo "<script>
+                    window.location = 'homepage.php'
+                  </script>";
+        }
         ?>
 											
 										</ul>
@@ -224,40 +236,36 @@ function myFunction2() {
 					</header>
 						<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
                            <div class="menu">
-									<ul id="menu" >
+                           <ul id="menu" >
 										<li><a href="homepage.php"><i class="fa fa-tachometer"></i> <span>Administration</span></a></li>
 										 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Patient</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										   <ul id="menu-academico-sub" >
-										   <li id="menu-academico-avaliacoes" ><a href="students.php">New Student</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="viewstudentsedit1.php">Edit Student</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="csvstudents.php">Import/Export Data</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="viewstudentrecord.php">View List</a></li>
-											<li id="menu-academico-boletim" ><a href="billingstudent.php">Billing</a></li>
-											<li id="menu-academico-boletim" ><a href="studentcreditnotes.php">Credit Notes</a></li>
-											
-											
-										  </ul>
+										   <li id="menu-academico-avaliacoes" ><a href="patients.php">Register patient</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="vitals1.php">Vitals</a></li>
+											<li id="menu-academico-boletim" ><a href="visits1.php">Visits</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="doctors_list.php">Diagnosis</a></li>
+											 </ul>
 										</li>
-										 <li id="menu-academico" ><a href="staff.php"><i class="fa fa-file-text-o"></i> <span>Staff Member</span></a></li>
-									<li><a href="course.php"><i class="lnr lnr-pencil"></i> <span>Diagnosis</span></a></li>
-									<li id="menu-academico" ><a href="departments.php"><i class="fa fa-file-text-o"></i> <span>Departments</span></a></li>
-									<li id="menu-academico" ><a href="markstep1.php"><i class="lnr lnr-book"></i> <span>Lab</span></a></li>
-									 <li><a href="Reports.php"><i class="lnr lnr-envelope"></i> <span>Reports</span></a></li>
-									<li><a href="Visualisations.php"><i class="lnr lnr-chart-bars"></i> <span>Visualisations</span></a></li>
-							        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Tabs & Calender</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-										 <ul id="menu-academico-sub" >
-											<li id="menu-academico-avaliacoes" ><a href="tabs.html">Tabs</a></li>
-											<li id="menu-academico-boletim" ><a href="calender.html">Calender</a></li>
-
-										  </ul>
-									 </li>
-									<li><a href="#"><i class="lnr lnr-chart-bars"></i> <span>Forms</span> <span class="fa fa-angle-right" style="float: right"></span></a>
-									  <ul>
-										<li><a href="input.html"> Input</a></li>
-										<li><a href="validation.html">Validation</a></li>
-									</ul>
-									</li>
+										<li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Manage Staff</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+										   <ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="staff.php">Register Staff</a></li>
+											
+											 </ul>
+										</li>
+									<li><a href="lab1.php"><i class="lnr lnr-pencil"></i> <span>Laboratory</span></a></li>
+									<li id="menu-academico" ><a href="pharmacy1.php"><i class="fa fa-file-text-o"></i> <span>Pharmacy</span></a></li>
+									<li id="menu-academico" ><a href="billing1.php"><i class="lnr lnr-book"></i> <span>Billing</span></a></li>
+									 
+									<li><a href="reports.php"><i class="lnr lnr-chart-bars"></i> <span>Reports</span></a>
+									<ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="reports.php">Visit Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_morbidity.php">Disease Rate Report</a></li>
+											<li id="menu-academico-boletim" ><a href="report_doctors.php">Doctor Patient Report</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="report_area.php">Morbidity Per Area</a></li>
+											 </ul>
+										</li>
+									  </ul>
+									
 								  </ul>
 								</div>
 							  </div>
@@ -293,213 +301,7 @@ function myFunction2() {
 <script language="javascript" type="text/javascript" src="js/jquery.flot.js"></script>
 	<script type="text/javascript">
 
-	$(function() {
-
-		// We use an inline data source in the example, usually data would
-		// be fetched from a server
-
-		var data = [],
-			totalPoints = 300;
-
-		function getRandomData() {
-
-			if (data.length > 0)
-				data = data.slice(1);
-
-			// Do a random walk
-
-			while (data.length < totalPoints) {
-
-				var prev = data.length > 0 ? data[data.length - 1] : 50,
-					y = prev + Math.random() * 10 - 5;
-
-				if (y < 0) {
-					y = 0;
-				} else if (y > 100) {
-					y = 100;
-				}
-
-				data.push(y);
-			}
-
-			// Zip the generated y values with the x values
-
-			var res = [];
-			for (var i = 0; i < data.length; ++i) {
-				res.push([i, data[i]])
-			}
-
-			return res;
-		}
-
-		// Set up the control widget
-
-		var updateInterval = 30;
-		$("#updateInterval").val(updateInterval).change(function () {
-			var v = $(this).val();
-			if (v && !isNaN(+v)) {
-				updateInterval = +v;
-				if (updateInterval < 1) {
-					updateInterval = 1;
-				} else if (updateInterval > 2000) {
-					updateInterval = 2000;
-				}
-				$(this).val("" + updateInterval);
-			}
-		});
-
-		var plot = $.plot("#placeholder", [ getRandomData() ], {
-			series: {
-				shadowSize: 0	// Drawing is faster without shadows
-			},
-			yaxis: {
-				min: 0,
-				max: 100
-			},
-			xaxis: {
-				show: false
-			}
-		});
-
-		function update() {
-
-			plot.setData([getRandomData()]);
-
-			// Since the axes don't change, we don't need to call plot.setupGrid()
-
-			plot.draw();
-			setTimeout(update, updateInterval);
-		}
-
-		update();
-
-		// Add the Flot version string to the footer
-
-		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
-	});
-
-	</script>
-<!-- /real-time -->
-<script src="js/jquery.fn.gantt.js"></script>
-    <script>
-
-		$(function() {
-
-			"use strict";
-
-			$(".gantt").gantt({
-				source: [{
-					name: "Sprint 0",
-					desc: "Analysis",
-					values: [{
-						from: "/Date(1320192000000)/",
-						to: "/Date(1322401600000)/",
-						label: "Requirement Gathering", 
-						customClass: "ganttRed"
-					}]
-				},{
-					name: " ",
-					desc: "Scoping",
-					values: [{
-						from: "/Date(1322611200000)/",
-						to: "/Date(1323302400000)/",
-						label: "Scoping", 
-						customClass: "ganttRed"
-					}]
-				},{
-					name: "Sprint 1",
-					desc: "Development",
-					values: [{
-						from: "/Date(1323802400000)/",
-						to: "/Date(1325685200000)/",
-						label: "Development", 
-						customClass: "ganttGreen"
-					}]
-				},{
-					name: " ",
-					desc: "Showcasing",
-					values: [{
-						from: "/Date(1325685200000)/",
-						to: "/Date(1325695200000)/",
-						label: "Showcasing", 
-						customClass: "ganttBlue"
-					}]
-				},{
-					name: "Sprint 2",
-					desc: "Development",
-					values: [{
-						from: "/Date(1326785200000)/",
-						to: "/Date(1325785200000)/",
-						label: "Development", 
-						customClass: "ganttGreen"
-					}]
-				},{
-					name: " ",
-					desc: "Showcasing",
-					values: [{
-						from: "/Date(1328785200000)/",
-						to: "/Date(1328905200000)/",
-						label: "Showcasing", 
-						customClass: "ganttBlue"
-					}]
-				},{
-					name: "Release Stage",
-					desc: "Training",
-					values: [{
-						from: "/Date(1330011200000)/",
-						to: "/Date(1336611200000)/",
-						label: "Training", 
-						customClass: "ganttOrange"
-					}]
-				},{
-					name: " ",
-					desc: "Deployment",
-					values: [{
-						from: "/Date(1336611200000)/",
-						to: "/Date(1338711200000)/",
-						label: "Deployment", 
-						customClass: "ganttOrange"
-					}]
-				},{
-					name: " ",
-					desc: "Warranty Period",
-					values: [{
-						from: "/Date(1336611200000)/",
-						to: "/Date(1349711200000)/",
-						label: "Warranty Period", 
-						customClass: "ganttOrange"
-					}]
-				}],
-				navigate: "scroll",
-				scale: "weeks",
-				maxScale: "months",
-				minScale: "days",
-				itemsPerPage: 10,
-				onItemClick: function(data) {
-					alert("Item clicked - show some details");
-				},
-				onAddClick: function(dt, rowId) {
-					alert("Empty space clicked - add an item!");
-				},
-				onRender: function() {
-					if (window.console && typeof console.log === "function") {
-						console.log("chart rendered");
-					}
-				}
-			});
-
-			$(".gantt").popover({
-				selector: ".bar",
-				title: "I'm a popover",
-				content: "And I'm the content of said popover.",
-				trigger: "hover"
-			});
-
-			prettyPrint();
-
-		});
-
-    </script>
+	
 		   <script src="js/menu_jquery.js"></script>
 <!--end of heading section-->  
         <div>
@@ -520,7 +322,7 @@ function myFunction2() {
 						<div class="forms">
 							<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
 								<div class="form-title">
-									<h5>Basic Form :</h5>
+									<h5>Search Patient</h5>
 
 								</div>
 								<div class="form-body">
@@ -536,20 +338,7 @@ function myFunction2() {
                 <nav>             
                 
                         <!-- block -->                      
-                        <div id="block_bg" class="block">   
-                            <div class="navbar navbar-inner block-header">
-                            <table>
-                            <tr>
-                            <td><a button type='button' class="btn btn-primary" href="homepage.php">Back</a> &nbsp;&nbsp;</td>
-                            <td><a button type='button' class="btn btn-primary" href="csvfee.php">Backup Transactions</a> &nbsp;&nbsp;</td>
-                            <td><label><b>Search Patient ID</b></label></td>
-                            <td><input type="text" name="myInput" id="myInput" class="form-control"
-                             placeholder="Patient ID" onkeyup="myFunction()"></td>
-                             <td><label><b>Name</b></label></td>
-                             <td><input type="text" name="myInput2" id="myInput2" class="form-control"
-                             placeholder="Name" onkeyup="myFunction2()"></td>
-                            
-                             </tr>
+                        
                                 <br>
 								
 								
@@ -564,15 +353,14 @@ function myFunction2() {
                                         <thead>
                                           <tr>
                                                 <th></th>
-                                                <th><center>Adm No.</center></th>
+                                                <th><center>Ref ID.</center></th>
                                                 <th><center>Name</center></th>
-                                                <th><center>Gender</center></th>
-                                                <th><center>Class</center></th>
-                                                <th><center>Mobile</center></th>
-                                                <th><center>Address</center></th>
-                                                <th><center>Reg. Date</center></th>
-                                                <th><center>Pay</center></th>
-                                                <th><center>View payment log</center></th>
+                                                <th><center>Pharmacy bill</center></th>
+                                                <th><center>Lab bill</center></th>
+                                                <th><center>consultation cost</center></th>
+                                                <th><center>total bill</center></th>
+                                                <th><center>Billing date</center></th>
+                                                
                                                 <script src="assets/js/jquery.dataTables.min.js"></script>
                                                 <script src="assets/js/DT_bootstrap.js"></script>
                                                 <th></th>
@@ -580,30 +368,23 @@ function myFunction2() {
                                         </thead>
                                         <tbody>
                         <?php 
-                    
-
-                    $sql ="SELECT  * from patients_table";
+                    $sql ="SELECT p.patient_id, p.firstname, p.lastname, b.pharmacy_cost, b.lab_cost, b.consultation_fee, b.total_bill, b.dob from billing b join patients_table p on p.patient_id = b.patient_id where p.patient_id = $p_id order by b.billing_id desc limit 1";
                     $user_query=mysqli_query($db,$sql) or die("error getting data");
                     while($row = mysqli_fetch_array($user_query, MYSQLI_ASSOC)){
-                    $id = $row['patient_id'];
-                  
+                    $id = $row['patient_id'];                 
                         ?>
                                                 <tr>
                                                 <td width="30">
-                                                <input id="optionsCheckbox" class="uniform_on" name="selector[]" type="checkbox" value="<?php echo $id; ?>">
                                                 </td>
                                                 <td><center><?php echo $row['patient_id']; ?></center></td>
                                                 <td><center><?php echo $row['firstname']." ".$row['lastname']; ?></center></td>
-                                                <td><center><?php echo $row['gender']; ?></center></td>
-                                                <td><center><?php echo $row['idno']; ?></center></td>
-                                                <td><center><?php echo $row['mobile']; ?></center></td>
-                                                <td><center><?php echo $row['p_address']."-".$row['area']; ?></center></td>
-                                                <td><center><?php echo $row['reg_date']; ?></center></td>
-                                            
+                                                <td><center><?php echo $row['pharmacy_cost']; ?></center></td>
+                                                <td><center><?php echo $row['lab_cost']; ?></center></td>
+                                                <td><center><?php echo $row['consultation_fee']; ?></center></td>
+                                                <td><center><?php echo $row['total_bill']; ?></center></td>
+                                                <td><center><?php echo $row['dob']; ?></center></td>
                                                 <td>
-                                                <center><a href="fee.php <?php echo '?id='.$id; ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok-circle"></i>Pay</a></center></td>
-                                                <td><center><a href="paymentlog.php <?php echo '?id='.$id; ?>" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i>View log</a></center></td>
-                                            
+
                             </tr>
                                                 <?php } ?>
                                         </tbody>
