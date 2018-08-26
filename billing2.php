@@ -170,8 +170,8 @@ function myFunction2() {
 								<div class="header_top">
 									<div class="top_right">
 										<ul>
-											<li><a href="contact.html">help</a></li>|
-											<li><a href="contact.html">Contact</a></li>|
+                    <li><a href="#">help</a></li>|
+											<li><a href="stock.php">Stock</a></li>|
 											<li><a href="session_logout.php">Log out</a></li>|
 											<?php
         //Check to see if the user is logged in.if not redirect user to the loging page.
